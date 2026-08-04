@@ -1,0 +1,9 @@
+com/fulfilment/application/monolith/warehouses/domain/WarehouseOptimisticLockingTest.class
+com/fulfilment/application/monolith/products/ProductEndpointTest.class
+com/fulfilment/application/monolith/location/LocationGatewayTest.class
+com/fulfilment/application/monolith/warehouses/adapters/WarehouseConcurrencyIT.class
+com/fulfilment/application/monolith/warehouses/domain/WarehouseValidationTest.class
+com/fulfilment/application/monolith/warehouses/adapters/WarehouseTestcontainersIT.class
+com/fulfilment/application/monolith/stores/StoreEventObserverTest.class
+com/fulfilment/application/monolith/warehouses/domain/usecases/CreateWarehouseUseCaseTest.class
+com/fulfilment/application/monolith/warehouses/adapters/restapi/WarehouseEndpointIT.class

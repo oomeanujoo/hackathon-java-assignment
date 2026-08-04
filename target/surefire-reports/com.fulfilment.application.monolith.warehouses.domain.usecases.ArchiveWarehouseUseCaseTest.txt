@@ -1,0 +1,18 @@
+-------------------------------------------------------------------------------
+Test set: com.fulfilment.application.monolith.warehouses.domain.usecases.ArchiveWarehouseUseCaseTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.045 s <<< FAILURE! -- in com.fulfilment.application.monolith.warehouses.domain.usecases.ArchiveWarehouseUseCaseTest
+com.fulfilment.application.monolith.warehouses.domain.usecases.ArchiveWarehouseUseCaseTest.testConcurrentArchiveAndStockUpdateCausesOptimisticLockException -- Time elapsed: 0.006 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Expected either both changes to be applied properly OR an exception to be thrown. Instead, a lost update occurred: archivedAt=2026-02-26T10:39:07.011214, stock=50 ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at com.fulfilment.application.monolith.warehouses.domain.usecases.ArchiveWarehouseUseCaseTest.testConcurrentArchiveAndStockUpdateCausesOptimisticLockException(ArchiveWarehouseUseCaseTest.java:156)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at io.quarkus.test.junit.QuarkusTestExtension.runExtensionMethod(QuarkusTestExtension.java:973)
+	at io.quarkus.test.junit.QuarkusTestExtension.interceptTestMethod(QuarkusTestExtension.java:823)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

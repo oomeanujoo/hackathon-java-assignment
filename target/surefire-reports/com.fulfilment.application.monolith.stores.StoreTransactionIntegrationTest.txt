@@ -1,0 +1,131 @@
+-------------------------------------------------------------------------------
+Test set: com.fulfilment.application.monolith.stores.StoreTransactionIntegrationTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 2.113 s <<< FAILURE! -- in com.fulfilment.application.monolith.stores.StoreTransactionIntegrationTest
+com.fulfilment.application.monolith.stores.StoreTransactionIntegrationTest.testLegacySystemNotNotifiedOnFailedStoreCreation -- Time elapsed: 2.107 s <<< FAILURE!
+org.mockito.exceptions.verification.NeverWantedButInvoked: 
+
+legacyStoreManagerGateway.createStoreOnLegacySystem(
+    <any com.fulfilment.application.monolith.stores.Store>
+);
+Never wanted here:
+-> at com.fulfilment.application.monolith.stores.StoreTransactionIntegrationTest.testLegacySystemNotNotifiedOnFailedStoreCreation(StoreTransactionIntegrationTest.java:59)
+But invoked here:
+-> at com.fulfilment.application.monolith.stores.LegacyStoreManagerGateway_ClientProxy.createStoreOnLegacySystem(Unknown Source) with arguments: [Store<5>]
+
+	at com.fulfilment.application.monolith.stores.StoreTransactionIntegrationTest.testLegacySystemNotNotifiedOnFailedStoreCreation(StoreTransactionIntegrationTest.java:59)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at io.quarkus.test.junit.QuarkusTestExtension.runExtensionMethod(QuarkusTestExtension.java:973)
+	at io.quarkus.test.junit.QuarkusTestExtension.interceptTestMethod(QuarkusTestExtension.java:823)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: org.hibernate.exception.ConstraintViolationException: could not execute statement [Unique index or primary key violation: "PUBLIC.CONSTRAINT_INDEX_4 ON PUBLIC.STORE(NAME NULLS FIRST) VALUES ( /* 4 */ 'IntegrationTest_1772098744774' )"; SQL statement:
+insert into Store (name,quantityProductsInStock,id) values (?,?,?) [23505-224]] [insert into Store (name,quantityProductsInStock,id) values (?,?,?)]
+		at org.hibernate.dialect.H2Dialect.lambda$buildSQLExceptionConversionDelegate$3(H2Dialect.java:746)
+		at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58)
+		at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+		at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197)
+		at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.performNonBatchedMutation(AbstractMutationExecutor.java:134)
+		at org.hibernate.engine.jdbc.mutation.internal.MutationExecutorSingleNonBatched.performNonBatchedOperations(MutationExecutorSingleNonBatched.java:55)
+		at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.execute(AbstractMutationExecutor.java:55)
+		at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.doStaticInserts(InsertCoordinatorStandard.java:194)
+		at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.coordinateInsert(InsertCoordinatorStandard.java:132)
+		at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.insert(InsertCoordinatorStandard.java:104)
+		at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:110)
+		at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:632)
+		at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:499)
+		at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:371)
+		at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:41)
+		at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:127)
+		at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1425)
+		at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:487)
+		at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:2324)
+		at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:1981)
+		at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:439)
+		at org.hibernate.resource.transaction.backend.jta.internal.JtaTransactionCoordinatorImpl.beforeCompletion(JtaTransactionCoordinatorImpl.java:336)
+		at org.hibernate.resource.transaction.backend.jta.internal.synchronization.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:47)
+		at org.hibernate.resource.transaction.backend.jta.internal.synchronization.RegisteredSynchronization.beforeCompletion(RegisteredSynchronization.java:37)
+		at com.arjuna.ats.internal.jta.resources.arjunacore.SynchronizationImple.beforeCompletion(SynchronizationImple.java:52)
+		at com.arjuna.ats.arjuna.coordinator.TwoPhaseCoordinator.beforeCompletion(TwoPhaseCoordinator.java:348)
+		at com.arjuna.ats.arjuna.coordinator.TwoPhaseCoordinator.end(TwoPhaseCoordinator.java:66)
+		at com.arjuna.ats.arjuna.AtomicAction.commit(AtomicAction.java:135)
+		at com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionImple.commitAndDisassociate(TransactionImple.java:1290)
+		at com.arjuna.ats.internal.jta.transaction.arjunacore.BaseTransaction.commit(BaseTransaction.java:104)
+		at io.quarkus.narayana.jta.runtime.NotifyingTransactionManager.commit(NotifyingTransactionManager.java:70)
+		at io.quarkus.narayana.jta.runtime.interceptor.TransactionalInterceptorBase.endTransaction(TransactionalInterceptorBase.java:406)
+		at io.quarkus.narayana.jta.runtime.interceptor.TransactionalInterceptorBase.invokeInOurTx(TransactionalInterceptorBase.java:171)
+		at io.quarkus.narayana.jta.runtime.interceptor.TransactionalInterceptorBase.invokeInOurTx(TransactionalInterceptorBase.java:107)
+		at io.quarkus.narayana.jta.runtime.interceptor.TransactionalInterceptorRequired.doIntercept(TransactionalInterceptorRequired.java:38)
+		at io.quarkus.narayana.jta.runtime.interceptor.TransactionalInterceptorBase.intercept(TransactionalInterceptorBase.java:61)
+		at io.quarkus.narayana.jta.runtime.interceptor.TransactionalInterceptorRequired.intercept(TransactionalInterceptorRequired.java:32)
+		at io.quarkus.narayana.jta.runtime.interceptor.TransactionalInterceptorRequired_Bean.intercept(Unknown Source)
+		at io.quarkus.arc.impl.InterceptorInvocation.invoke(InterceptorInvocation.java:42)
+		at io.quarkus.arc.impl.AroundInvokeInvocationContext.perform(AroundInvokeInvocationContext.java:30)
+		at io.quarkus.arc.impl.InvocationContexts.performAroundInvoke(InvocationContexts.java:27)
+		at com.fulfilment.application.monolith.stores.StoreResource_Subclass.create(Unknown Source)
+		at com.fulfilment.application.monolith.stores.StoreResource_ClientProxy.create(Unknown Source)
+		at com.fulfilment.application.monolith.stores.StoreResource$quarkusrestinvoker$create_f3a56c1eccbd1365661f1c3dacd084472e6cb0ef.invoke(Unknown Source)
+		at org.jboss.resteasy.reactive.server.handlers.InvocationHandler.handle(InvocationHandler.java:29)
+		at io.quarkus.resteasy.reactive.server.runtime.QuarkusResteasyReactiveRequestContext.invokeHandler(QuarkusResteasyReactiveRequestContext.java:141)
+		at org.jboss.resteasy.reactive.common.core.AbstractResteasyReactiveContext.run(AbstractResteasyReactiveContext.java:147)
+		at io.quarkus.vertx.core.runtime.VertxCoreRecorder$14.runWith(VertxCoreRecorder.java:635)
+		at org.jboss.threads.EnhancedQueueExecutor$Task.doRunWith(EnhancedQueueExecutor.java:2516)
+		at org.jboss.threads.EnhancedQueueExecutor$Task.run(EnhancedQueueExecutor.java:2495)
+		at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.run(EnhancedQueueExecutor.java:1521)
+		at org.jboss.threads.DelegatingRunnable.run(DelegatingRunnable.java:11)
+		at org.jboss.threads.ThreadLocalResettingRunnable.run(ThreadLocalResettingRunnable.java:11)
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+		at java.base/java.lang.Thread.run(Thread.java:1474)
+	Caused by: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "PUBLIC.CONSTRAINT_INDEX_4 ON PUBLIC.STORE(NAME NULLS FIRST) VALUES ( /* 4 */ 'IntegrationTest_1772098744774' )"; SQL statement:
+insert into Store (name,quantityProductsInStock,id) values (?,?,?) [23505-224]
+		at org.h2.message.DbException.getJdbcSQLException(DbException.java:520)
+		at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+		at org.h2.message.DbException.get(DbException.java:223)
+		at org.h2.message.DbException.get(DbException.java:199)
+		at org.h2.index.Index.getDuplicateKeyException(Index.java:527)
+		at org.h2.mvstore.db.MVSecondaryIndex.checkUnique(MVSecondaryIndex.java:223)
+		at org.h2.mvstore.db.MVSecondaryIndex.add(MVSecondaryIndex.java:184)
+		at org.h2.mvstore.db.MVTable.addRow(MVTable.java:519)
+		at org.h2.command.dml.Insert.insertRows(Insert.java:174)
+		at org.h2.command.dml.Insert.update(Insert.java:135)
+		at org.h2.command.dml.DataChangeStatement.update(DataChangeStatement.java:74)
+		at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+		at org.h2.command.Command.executeUpdate(Command.java:256)
+		at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:216)
+		at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:174)
+		at io.agroal.pool.wrapper.PreparedStatementWrapper.executeUpdate(PreparedStatementWrapper.java:90)
+		at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:194)
+		... 51 more
+	Suppressed: io.quarkus.arc.ArcUndeclaredThrowableException: Error invoking subclass method
+		at com.fulfilment.application.monolith.stores.StoreResource_Subclass.create(Unknown Source)
+		at com.fulfilment.application.monolith.stores.StoreResource_ClientProxy.create(Unknown Source)
+		at com.fulfilment.application.monolith.stores.StoreResource$quarkusrestinvoker$create_f3a56c1eccbd1365661f1c3dacd084472e6cb0ef.invoke(Unknown Source)
+		at org.jboss.resteasy.reactive.server.handlers.InvocationHandler.handle(InvocationHandler.java:29)
+		at io.quarkus.resteasy.reactive.server.runtime.QuarkusResteasyReactiveRequestContext.invokeHandler(QuarkusResteasyReactiveRequestContext.java:141)
+		at org.jboss.resteasy.reactive.common.core.AbstractResteasyReactiveContext.run(AbstractResteasyReactiveContext.java:147)
+		at io.quarkus.vertx.core.runtime.VertxCoreRecorder$14.runWith(VertxCoreRecorder.java:635)
+		at org.jboss.threads.EnhancedQueueExecutor$Task.doRunWith(EnhancedQueueExecutor.java:2516)
+		at org.jboss.threads.EnhancedQueueExecutor$Task.run(EnhancedQueueExecutor.java:2495)
+		at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.run(EnhancedQueueExecutor.java:1521)
+		at org.jboss.threads.DelegatingRunnable.run(DelegatingRunnable.java:11)
+		at org.jboss.threads.ThreadLocalResettingRunnable.run(ThreadLocalResettingRunnable.java:11)
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+		at java.base/java.lang.Thread.run(Thread.java:1474)
+	Caused by: jakarta.transaction.RollbackException: ARJUNA016053: Could not commit transaction.
+		at com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionImple.commitAndDisassociate(TransactionImple.java:1302)
+		at com.arjuna.ats.internal.jta.transaction.arjunacore.BaseTransaction.commit(BaseTransaction.java:104)
+		at io.quarkus.narayana.jta.runtime.NotifyingTransactionManager.commit(NotifyingTransactionManager.java:70)
+		at io.quarkus.narayana.jta.runtime.interceptor.TransactionalInterceptorBase.endTransaction(TransactionalInterceptorBase.java:406)
+		at io.quarkus.narayana.jta.runtime.interceptor.TransactionalInterceptorBase.invokeInOurTx(TransactionalInterceptorBase.java:171)
+		at io.quarkus.narayana.jta.runtime.interceptor.TransactionalInterceptorBase.invokeInOurTx(TransactionalInterceptorBase.java:107)
+		at io.quarkus.narayana.jta.runtime.interceptor.TransactionalInterceptorRequired.doIntercept(TransactionalInterceptorRequired.java:38)
+		at io.quarkus.narayana.jta.runtime.interceptor.TransactionalInterceptorBase.intercept(TransactionalInterceptorBase.java:61)
+		at io.quarkus.narayana.jta.runtime.interceptor.TransactionalInterceptorRequired.intercept(TransactionalInterceptorRequired.java:32)
+		at io.quarkus.narayana.jta.runtime.interceptor.TransactionalInterceptorRequired_Bean.intercept(Unknown Source)
+		at io.quarkus.arc.impl.InterceptorInvocation.invoke(InterceptorInvocation.java:42)
+		at io.quarkus.arc.impl.AroundInvokeInvocationContext.perform(AroundInvokeInvocationContext.java:30)
+		at io.quarkus.arc.impl.InvocationContexts.performAroundInvoke(InvocationContexts.java:27)
+		... 14 more
+	Caused by: [CIRCULAR REFERENCE: org.hibernate.exception.ConstraintViolationException: could not execute statement [Unique index or primary key violation: "PUBLIC.CONSTRAINT_INDEX_4 ON PUBLIC.STORE(NAME NULLS FIRST) VALUES ( /* 4 */ 'IntegrationTest_1772098744774' )"; SQL statement:
+insert into Store (name,quantityProductsInStock,id) values (?,?,?) [23505-224]] [insert into Store (name,quantityProductsInStock,id) values (?,?,?)]]
+

@@ -1,0 +1,12 @@
+/Users/tiago.de.oliveira.stutz/workspace/fcs-interview-code-assignment/hackathon-java-assignment/src/test/java/com/fulfilment/application/monolith/warehouses/adapters/WarehouseConcurrencyIT.java
+/Users/tiago.de.oliveira.stutz/workspace/fcs-interview-code-assignment/hackathon-java-assignment/src/test/java/com/fulfilment/application/monolith/warehouses/domain/WarehouseValidationTest.java
+/Users/tiago.de.oliveira.stutz/workspace/fcs-interview-code-assignment/hackathon-java-assignment/src/test/java/com/fulfilment/application/monolith/stores/StoreTransactionIntegrationTest.java
+/Users/tiago.de.oliveira.stutz/workspace/fcs-interview-code-assignment/hackathon-java-assignment/src/test/java/com/fulfilment/application/monolith/warehouses/domain/usecases/ReplaceWarehouseUseCaseTest.java
+/Users/tiago.de.oliveira.stutz/workspace/fcs-interview-code-assignment/hackathon-java-assignment/src/test/java/com/fulfilment/application/monolith/warehouses/domain/usecases/CreateWarehouseUseCaseTest.java
+/Users/tiago.de.oliveira.stutz/workspace/fcs-interview-code-assignment/hackathon-java-assignment/src/test/java/com/fulfilment/application/monolith/warehouses/adapters/restapi/WarehouseEndpointIT.java
+/Users/tiago.de.oliveira.stutz/workspace/fcs-interview-code-assignment/hackathon-java-assignment/src/test/java/com/fulfilment/application/monolith/warehouses/adapters/WarehouseTestcontainersIT.java
+/Users/tiago.de.oliveira.stutz/workspace/fcs-interview-code-assignment/hackathon-java-assignment/src/test/java/com/fulfilment/application/monolith/location/LocationGatewayTest.java
+/Users/tiago.de.oliveira.stutz/workspace/fcs-interview-code-assignment/hackathon-java-assignment/src/test/java/com/fulfilment/application/monolith/warehouses/domain/usecases/ArchiveWarehouseUseCaseTest.java
+/Users/tiago.de.oliveira.stutz/workspace/fcs-interview-code-assignment/hackathon-java-assignment/src/test/java/com/fulfilment/application/monolith/warehouses/domain/WarehouseOptimisticLockingTest.java
+/Users/tiago.de.oliveira.stutz/workspace/fcs-interview-code-assignment/hackathon-java-assignment/src/test/java/com/fulfilment/application/monolith/stores/StoreEventObserverTest.java
+/Users/tiago.de.oliveira.stutz/workspace/fcs-interview-code-assignment/hackathon-java-assignment/src/test/java/com/fulfilment/application/monolith/products/ProductEndpointTest.java

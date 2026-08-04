@@ -1,0 +1,60 @@
+-------------------------------------------------------------------------------
+Test set: com.fulfilment.application.monolith.warehouses.adapters.WarehouseConcurrencyIT
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 2.331 s <<< FAILURE! -- in com.fulfilment.application.monolith.warehouses.adapters.WarehouseConcurrencyIT
+com.fulfilment.application.monolith.warehouses.adapters.WarehouseConcurrencyIT.testConcurrentWarehouseCreationWithUniqueCodesSucceeds -- Time elapsed: 0.347 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: All concurrent creations with unique codes should succeed ==> expected: <10> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:166)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:664)
+	at com.fulfilment.application.monolith.warehouses.adapters.WarehouseConcurrencyIT.testConcurrentWarehouseCreationWithUniqueCodesSucceeds(WarehouseConcurrencyIT.java:94)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at io.quarkus.test.junit.QuarkusTestExtension.runExtensionMethod(QuarkusTestExtension.java:973)
+	at io.quarkus.test.junit.QuarkusTestExtension.interceptTestMethod(QuarkusTestExtension.java:823)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.fulfilment.application.monolith.warehouses.adapters.WarehouseConcurrencyIT.testConcurrentWarehouseCreationWithDuplicateCodeFails -- Time elapsed: 0.002 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Only one warehouse with duplicate code should be created ==> expected: <1> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at com.fulfilment.application.monolith.warehouses.adapters.WarehouseConcurrencyIT.testConcurrentWarehouseCreationWithDuplicateCodeFails(WarehouseConcurrencyIT.java:136)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at io.quarkus.test.junit.QuarkusTestExtension.runExtensionMethod(QuarkusTestExtension.java:973)
+	at io.quarkus.test.junit.QuarkusTestExtension.interceptTestMethod(QuarkusTestExtension.java:823)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.fulfilment.application.monolith.warehouses.adapters.WarehouseConcurrencyIT.testConcurrentReadsAreNonBlocking -- Time elapsed: 0.114 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: All concurrent reads should succeed ==> expected: <20> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at com.fulfilment.application.monolith.warehouses.adapters.WarehouseConcurrencyIT.testConcurrentReadsAreNonBlocking(WarehouseConcurrencyIT.java:177)
+	at com.fulfilment.application.monolith.warehouses.adapters.WarehouseConcurrencyIT_Subclass.testConcurrentReadsAreNonBlocking$$superforward(Unknown Source)
+	at com.fulfilment.application.monolith.warehouses.adapters.WarehouseConcurrencyIT_Subclass$$function$$2.apply(Unknown Source)
+	at io.quarkus.arc.impl.AroundInvokeInvocationContext.proceed(AroundInvokeInvocationContext.java:73)
+	at io.quarkus.arc.impl.AroundInvokeInvocationContext.proceed(AroundInvokeInvocationContext.java:62)
+	at io.quarkus.narayana.jta.runtime.interceptor.TransactionalInterceptorBase.invokeInOurTx(TransactionalInterceptorBase.java:136)
+	at io.quarkus.narayana.jta.runtime.interceptor.TransactionalInterceptorBase.invokeInOurTx(TransactionalInterceptorBase.java:107)
+	at io.quarkus.narayana.jta.runtime.interceptor.TransactionalInterceptorRequired.doIntercept(TransactionalInterceptorRequired.java:38)
+	at io.quarkus.narayana.jta.runtime.interceptor.TransactionalInterceptorBase.intercept(TransactionalInterceptorBase.java:61)
+	at io.quarkus.narayana.jta.runtime.interceptor.TransactionalInterceptorRequired.intercept(TransactionalInterceptorRequired.java:32)
+	at io.quarkus.narayana.jta.runtime.interceptor.TransactionalInterceptorRequired_Bean.intercept(Unknown Source)
+	at io.quarkus.arc.impl.InterceptorInvocation.invoke(InterceptorInvocation.java:42)
+	at io.quarkus.arc.impl.AroundInvokeInvocationContext.perform(AroundInvokeInvocationContext.java:30)
+	at io.quarkus.arc.impl.InvocationContexts.performAroundInvoke(InvocationContexts.java:27)
+	at com.fulfilment.application.monolith.warehouses.adapters.WarehouseConcurrencyIT_Subclass.testConcurrentReadsAreNonBlocking(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at io.quarkus.test.junit.QuarkusTestExtension.runExtensionMethod(QuarkusTestExtension.java:973)
+	at io.quarkus.test.junit.QuarkusTestExtension.interceptTestMethod(QuarkusTestExtension.java:823)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
