@@ -6,8 +6,10 @@ import com.fulfilment.application.monolith.warehouses.domain.models.Warehouse;
 import com.fulfilment.application.monolith.warehouses.domain.usecases.CreateWarehouseUseCase;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -32,11 +34,15 @@ public class WarehouseValidationTest {
   @Inject
   LocationGateway locationResolver;
 
+  @Inject
+  EntityManager em;
+
   private CreateWarehouseUseCase createWarehouseUseCase;
 
   @BeforeEach
   @Transactional
   public void setup() {
+    em.createQuery("DELETE FROM DbWarehouse").executeUpdate();
     createWarehouseUseCase = new CreateWarehouseUseCase(warehouseRepository, locationResolver);
   }
 
@@ -73,6 +79,47 @@ public class WarehouseValidationTest {
         Arguments.of(200, 10, "AMSTERDAM-001", "exceeds location max capacity"), // capacity > 100
         Arguments.of(50, 60, "AMSTERDAM-001", "exceeds warehouse capacity")      // stock > capacity
     );
+  }
+
+  /**
+   * ZWOLLE-002 allows at most 2 warehouses. The first two should succeed; a third should be
+   * rejected even though its own capacity/stock are perfectly valid on their own.
+   */
+  @Test
+  @Transactional
+  public void testCannotExceedMaxNumberOfWarehousesAtLocation() {
+    createWarehouseUseCase.create(newWarehouse("MAXCOUNT-1", "ZWOLLE-002", 10, 5));
+    createWarehouseUseCase.create(newWarehouse("MAXCOUNT-2", "ZWOLLE-002", 10, 5));
+
+    Exception exception = assertThrows(IllegalArgumentException.class, () ->
+        createWarehouseUseCase.create(newWarehouse("MAXCOUNT-3", "ZWOLLE-002", 10, 5)));
+
+    assertTrue(exception.getMessage().contains("maximum number of warehouses"));
+  }
+
+  /**
+   * AMSTERDAM-002 allows a max total capacity of 75. Two warehouses of capacity 40 each are each
+   * individually well under that limit, but their combined total (80) is not — proving the
+   * check adds up capacity across the location, not just per warehouse.
+   */
+  @Test
+  @Transactional
+  public void testCannotExceedTotalCapacityAtLocation() {
+    createWarehouseUseCase.create(newWarehouse("TOTALCAP-1", "AMSTERDAM-002", 40, 10));
+
+    Exception exception = assertThrows(IllegalArgumentException.class, () ->
+        createWarehouseUseCase.create(newWarehouse("TOTALCAP-2", "AMSTERDAM-002", 40, 10)));
+
+    assertTrue(exception.getMessage().contains("Total warehouse capacity"));
+  }
+
+  private static Warehouse newWarehouse(String code, String location, int capacity, int stock) {
+    Warehouse warehouse = new Warehouse();
+    warehouse.businessUnitCode = code;
+    warehouse.location = location;
+    warehouse.capacity = capacity;
+    warehouse.stock = stock;
+    return warehouse;
   }
 
   /**

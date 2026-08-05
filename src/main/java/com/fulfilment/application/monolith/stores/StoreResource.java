@@ -59,7 +59,7 @@ public class StoreResource {
     }
 
     store.persist();
-    storeCreatedEvent.fireAsync(new StoreCreatedEvent(store));
+    storeCreatedEvent.fire(new StoreCreatedEvent(store));
 
     return Response.ok(store).status(201).build();
   }
@@ -81,7 +81,7 @@ public class StoreResource {
     entity.name = updatedStore.name;
     entity.quantityProductsInStock = updatedStore.quantityProductsInStock;
 
-    storeUpdatedEvent.fireAsync(new StoreUpdatedEvent(entity));
+    storeUpdatedEvent.fire(new StoreUpdatedEvent(entity));
 
     return entity;
   }
@@ -108,7 +108,7 @@ public class StoreResource {
       entity.quantityProductsInStock = updatedStore.quantityProductsInStock;
     }
 
-    storeUpdatedEvent.fireAsync(new StoreUpdatedEvent(entity));
+    storeUpdatedEvent.fire(new StoreUpdatedEvent(entity));
 
     return entity;
   }

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Warehouse.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java-code-assignment</a> &gt; <a href="index.source.html" class="el_package">com.warehouse.api.beans</a> &gt; <span class="el_source">Warehouse.java</span></div><h1>Warehouse.java</h1><pre class="source lang-java linenums">
+package com.warehouse.api.beans;
+
+import javax.annotation.processing.Generated;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+    &quot;id&quot;,
+    &quot;businessUnitCode&quot;,
+    &quot;location&quot;,
+    &quot;capacity&quot;,
+    &quot;stock&quot;
+})
+@Generated(&quot;jsonschema2pojo&quot;)
+<span class="fc" id="L18">public class Warehouse {</span>
+
+    @JsonProperty(&quot;id&quot;)
+    private String id;
+    @JsonProperty(&quot;businessUnitCode&quot;)
+    private String businessUnitCode;
+    @JsonProperty(&quot;location&quot;)
+    private String location;
+    @JsonProperty(&quot;capacity&quot;)
+    private Integer capacity;
+    @JsonProperty(&quot;stock&quot;)
+    private Integer stock;
+
+    @JsonProperty(&quot;id&quot;)
+    public String getId() {
+<span class="fc" id="L33">        return id;</span>
+    }
+
+    @JsonProperty(&quot;id&quot;)
+    public void setId(String id) {
+<span class="nc" id="L38">        this.id = id;</span>
+<span class="nc" id="L39">    }</span>
+
+    @JsonProperty(&quot;businessUnitCode&quot;)
+    public String getBusinessUnitCode() {
+<span class="fc" id="L43">        return businessUnitCode;</span>
+    }
+
+    @JsonProperty(&quot;businessUnitCode&quot;)
+    public void setBusinessUnitCode(String businessUnitCode) {
+<span class="fc" id="L48">        this.businessUnitCode = businessUnitCode;</span>
+<span class="fc" id="L49">    }</span>
+
+    @JsonProperty(&quot;location&quot;)
+    public String getLocation() {
+<span class="fc" id="L53">        return location;</span>
+    }
+
+    @JsonProperty(&quot;location&quot;)
+    public void setLocation(String location) {
+<span class="fc" id="L58">        this.location = location;</span>
+<span class="fc" id="L59">    }</span>
+
+    @JsonProperty(&quot;capacity&quot;)
+    public Integer getCapacity() {
+<span class="fc" id="L63">        return capacity;</span>
+    }
+
+    @JsonProperty(&quot;capacity&quot;)
+    public void setCapacity(Integer capacity) {
+<span class="fc" id="L68">        this.capacity = capacity;</span>
+<span class="fc" id="L69">    }</span>
+
+    @JsonProperty(&quot;stock&quot;)
+    public Integer getStock() {
+<span class="fc" id="L73">        return stock;</span>
+    }
+
+    @JsonProperty(&quot;stock&quot;)
+    public void setStock(Integer stock) {
+<span class="fc" id="L78">        this.stock = stock;</span>
+<span class="fc" id="L79">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

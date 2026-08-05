@@ -6,7 +6,9 @@ import com.fulfilment.application.monolith.warehouses.domain.models.Warehouse;
 import com.fulfilment.application.monolith.warehouses.domain.usecases.CreateWarehouseUseCase;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
+import jakarta.transaction.Transactional.TxType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -38,12 +40,16 @@ public class WarehouseConcurrencyIT {
   @Inject
   LocationGateway locationResolver;
 
-  private CreateWarehouseUseCase createWarehouseUseCase;
+  @Inject
+  CreateWarehouseUseCase createWarehouseUseCase;
+
+  @Inject
+  EntityManager em;
 
   @BeforeEach
   @Transactional
   public void setup() {
-    createWarehouseUseCase = new CreateWarehouseUseCase(warehouseRepository, locationResolver);
+    em.createQuery("DELETE FROM DbWarehouse").executeUpdate();
   }
 
   /**
@@ -53,22 +59,27 @@ public class WarehouseConcurrencyIT {
   @Test
   public void testConcurrentWarehouseCreationWithUniqueCodesSucceeds() throws InterruptedException {
     int threadCount = 10;
+    String[] locations = {
+      "AMSTERDAM-001", "AMSTERDAM-001", "AMSTERDAM-001", "AMSTERDAM-001", "AMSTERDAM-001",
+      "AMSTERDAM-002", "AMSTERDAM-002", "AMSTERDAM-002",
+      "EINDHOVEN-001", "EINDHOVEN-001"
+    };
     ExecutorService executor = Executors.newFixedThreadPool(threadCount);
     CountDownLatch latch = new CountDownLatch(threadCount);
-    
+
     List<Future<Boolean>> futures = new ArrayList<>();
-    
+
     for (int i = 0; i < threadCount; i++) {
       final int index = i;
       Future<Boolean> future = executor.submit(() -> {
         try {
           Warehouse warehouse = new Warehouse();
           warehouse.businessUnitCode = "CONCURRENT-" + index;
-          warehouse.location = "AMSTERDAM-001";
-          warehouse.capacity = 50;
-          warehouse.stock = 10;
-          
-          createWarehouseUseCase.create(warehouse);
+          warehouse.location = locations[index];
+          warehouse.capacity = 5;
+          warehouse.stock = 1;
+
+          createInNewTransaction(warehouse);
           return true;
         } catch (Exception e) {
           return false;
@@ -117,8 +128,8 @@ public class WarehouseConcurrencyIT {
           warehouse.location = "ZWOLLE-001";
           warehouse.capacity = 30;
           warehouse.stock = 5;
-          
-          createWarehouseUseCase.create(warehouse);
+
+          createInNewTransaction(warehouse);
           successCount.incrementAndGet();
         } catch (Exception e) {
           // Expected: duplicate key or already exists error
@@ -141,7 +152,6 @@ public class WarehouseConcurrencyIT {
    * Test concurrent reads don't block each other (read scalability).
    */
   @Test
-  @Transactional
   public void testConcurrentReadsAreNonBlocking() throws InterruptedException {
     // Create a warehouse first
     Warehouse warehouse = new Warehouse();
@@ -149,7 +159,7 @@ public class WarehouseConcurrencyIT {
     warehouse.location = "AMSTERDAM-001";
     warehouse.capacity = 100;
     warehouse.stock = 50;
-    createWarehouseUseCase.create(warehouse);
+    createInNewTransaction(warehouse);
     
     int readThreadCount = 20;
     ExecutorService executor = Executors.newFixedThreadPool(readThreadCount);
@@ -160,7 +170,7 @@ public class WarehouseConcurrencyIT {
     for (int i = 0; i < readThreadCount; i++) {
       executor.submit(() -> {
         try {
-          Warehouse found = warehouseRepository.findByBusinessUnitCode("READ-TEST-001");
+          Warehouse found = findInNewTransaction("READ-TEST-001");
           if (found != null) {
             successfulReads.incrementAndGet();
           }
@@ -175,5 +185,15 @@ public class WarehouseConcurrencyIT {
     
     // All reads should succeed
     assertEquals(readThreadCount, successfulReads.get(), "All concurrent reads should succeed");
+  }
+
+  @Transactional(TxType.REQUIRES_NEW)
+  void createInNewTransaction(Warehouse warehouse) {
+    createWarehouseUseCase.create(warehouse);
+  }
+
+  @Transactional(TxType.REQUIRES_NEW)
+  Warehouse findInNewTransaction(String businessUnitCode) {
+    return warehouseRepository.findByBusinessUnitCode(businessUnitCode);
   }
 }

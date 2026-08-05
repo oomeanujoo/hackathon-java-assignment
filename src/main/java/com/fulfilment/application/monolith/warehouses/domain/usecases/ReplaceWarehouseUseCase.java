@@ -6,6 +6,7 @@ import com.fulfilment.application.monolith.warehouses.domain.ports.LocationResol
 import com.fulfilment.application.monolith.warehouses.domain.ports.ReplaceWarehouseOperation;
 import com.fulfilment.application.monolith.warehouses.domain.ports.WarehouseStore;
 import jakarta.enterprise.context.ApplicationScoped;
+import java.util.List;
 
 @ApplicationScoped
 public class ReplaceWarehouseUseCase implements ReplaceWarehouseOperation {
@@ -53,6 +54,25 @@ public class ReplaceWarehouseUseCase implements ReplaceWarehouseOperation {
       throw new IllegalArgumentException(
           "Warehouse stock (" + newWarehouse.stock +
           ") exceeds warehouse capacity (" + newWarehouse.capacity + ")");
+    }
+
+    // Validation 5: Location-level limits
+    List<Warehouse> activeAtLocation = warehouseStore.getAll().stream()
+        .filter(w -> newWarehouse.location.equals(w.location) && w.archivedAt == null
+            && !w.businessUnitCode.equals(newWarehouse.businessUnitCode))
+        .toList();
+
+    if (activeAtLocation.size() + 1 > location.maxNumberOfWarehouses()) {
+      throw new IllegalArgumentException(
+          "Location '" + newWarehouse.location + "' already has the maximum number of warehouses ("
+          + location.maxNumberOfWarehouses() + ")");
+    }
+
+    int totalCapacityAtLocation = activeAtLocation.stream().mapToInt(w -> w.capacity).sum() + newWarehouse.capacity;
+    if (totalCapacityAtLocation > location.maxCapacity()) {
+      throw new IllegalArgumentException(
+          "Total warehouse capacity at location '" + newWarehouse.location + "' (" + totalCapacityAtLocation
+          + ") would exceed the location's max capacity (" + location.maxCapacity() + ")");
     }
 
     // Update warehouse fields (preserve createdAt, businessUnitCode, archivedAt)

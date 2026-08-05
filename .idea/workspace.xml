@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="711f8a5b-53dc-48a8-889b-533796b7e66f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/QUESTIONS.md" beforeDir="false" afterPath="$PROJECT_DIR$/QUESTIONS.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fulfilment/application/monolith/stores/StoreEventObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fulfilment/application/monolith/stores/StoreEventObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fulfilment/application/monolith/stores/StoreResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fulfilment/application/monolith/stores/StoreResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fulfilment/application/monolith/warehouses/adapters/database/DbWarehouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fulfilment/application/monolith/warehouses/adapters/database/DbWarehouse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fulfilment/application/monolith/warehouses/adapters/database/WarehouseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fulfilment/application/monolith/warehouses/adapters/database/WarehouseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fulfilment/application/monolith/warehouses/adapters/restapi/WarehouseResourceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fulfilment/application/monolith/warehouses/adapters/restapi/WarehouseResourceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fulfilment/application/monolith/warehouses/domain/ports/WarehouseStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fulfilment/application/monolith/warehouses/domain/ports/WarehouseStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fulfilment/application/monolith/warehouses/domain/usecases/CreateWarehouseUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fulfilment/application/monolith/warehouses/domain/usecases/CreateWarehouseUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fulfilment/application/monolith/warehouses/domain/usecases/ReplaceWarehouseUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fulfilment/application/monolith/warehouses/domain/usecases/ReplaceWarehouseUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/openapi/warehouse-openapi.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/openapi/warehouse-openapi.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/fulfilment/application/monolith/warehouses/adapters/WarehouseConcurrencyIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/fulfilment/application/monolith/warehouses/adapters/WarehouseConcurrencyIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/fulfilment/application/monolith/warehouses/adapters/WarehouseTestcontainersIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/fulfilment/application/monolith/warehouses/adapters/WarehouseTestcontainersIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/fulfilment/application/monolith/warehouses/domain/WarehouseValidationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/fulfilment/application/monolith/warehouses/domain/WarehouseValidationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/build-metrics.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/build-metrics.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/location/LocationGateway.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/location/LocationGateway.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/products/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/products/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/products/ProductRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/products/ProductRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/products/ProductResource$ErrorMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/products/ProductResource$ErrorMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/products/ProductResource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/products/ProductResource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/stores/LegacyStoreManagerGateway.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/stores/LegacyStoreManagerGateway.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/stores/Store.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/stores/Store.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/stores/StoreCreatedEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/stores/StoreCreatedEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/stores/StoreEventObserver.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/stores/StoreEventObserver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/stores/StoreResource$ErrorMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/stores/StoreResource$ErrorMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/stores/StoreResource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/stores/StoreResource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/stores/StoreUpdatedEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/stores/StoreUpdatedEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/adapters/database/DbWarehouse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/adapters/database/DbWarehouse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/adapters/database/WarehouseRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/adapters/database/WarehouseRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/adapters/restapi/WarehouseResourceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/adapters/restapi/WarehouseResourceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/domain/models/Location.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/domain/models/Location.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/domain/models/Warehouse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/domain/models/Warehouse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/domain/ports/ArchiveWarehouseOperation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/domain/ports/ArchiveWarehouseOperation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/domain/ports/CreateWarehouseOperation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/domain/ports/CreateWarehouseOperation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/domain/ports/LocationResolver.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/domain/ports/LocationResolver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/domain/ports/ReplaceWarehouseOperation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/domain/ports/ReplaceWarehouseOperation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/domain/ports/WarehouseStore.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/domain/ports/WarehouseStore.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/domain/usecases/ArchiveWarehouseUseCase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/domain/usecases/ArchiveWarehouseUseCase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/domain/usecases/CreateWarehouseUseCase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/domain/usecases/CreateWarehouseUseCase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/domain/usecases/ReplaceWarehouseUseCase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/fulfilment/application/monolith/warehouses/domain/usecases/ReplaceWarehouseUseCase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/warehouse/api/WarehouseResource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/warehouse/api/WarehouseResource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/openapi/warehouse-openapi.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/openapi/warehouse-openapi.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/jaxrs/com/warehouse/api/WarehouseResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/jaxrs/com/warehouse/api/WarehouseResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/jaxrs/com/warehouse/api/beans/Warehouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/jaxrs/com/warehouse/api/beans/Warehouse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/null/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/null/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/null/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/null/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/quarkus/bootstrap/test-app-model.dat" beforeDir="false" afterPath="$PROJECT_DIR$/target/quarkus/bootstrap/test-app-model.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.fulfilment.application.monolith.location.LocationGatewayTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.fulfilment.application.monolith.location.LocationGatewayTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.fulfilment.application.monolith.products.ProductEndpointTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.fulfilment.application.monolith.products.ProductEndpointTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.fulfilment.application.monolith.stores.StoreEventObserverTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.fulfilment.application.monolith.stores.StoreEventObserverTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.fulfilment.application.monolith.stores.StoreTransactionIntegrationTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.fulfilment.application.monolith.stores.StoreTransactionIntegrationTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.fulfilment.application.monolith.warehouses.domain.WarehouseOptimisticLockingTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.fulfilment.application.monolith.warehouses.domain.WarehouseOptimisticLockingTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.fulfilment.application.monolith.warehouses.domain.usecases.ArchiveWarehouseUseCaseTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.fulfilment.application.monolith.warehouses.domain.usecases.ArchiveWarehouseUseCaseTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.fulfilment.application.monolith.warehouses.domain.usecases.ReplaceWarehouseUseCaseTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.fulfilment.application.monolith.warehouses.domain.usecases.ReplaceWarehouseUseCaseTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.fulfilment.application.monolith.location.LocationGatewayTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.fulfilment.application.monolith.location.LocationGatewayTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.fulfilment.application.monolith.products.ProductEndpointTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.fulfilment.application.monolith.products.ProductEndpointTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.fulfilment.application.monolith.stores.StoreEventObserverTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.fulfilment.application.monolith.stores.StoreEventObserverTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.fulfilment.application.monolith.stores.StoreTransactionIntegrationTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.fulfilment.application.monolith.stores.StoreTransactionIntegrationTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.fulfilment.application.monolith.warehouses.domain.WarehouseOptimisticLockingTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.fulfilment.application.monolith.warehouses.domain.WarehouseOptimisticLockingTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.fulfilment.application.monolith.warehouses.domain.usecases.ArchiveWarehouseUseCaseTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.fulfilment.application.monolith.warehouses.domain.usecases.ArchiveWarehouseUseCaseTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.fulfilment.application.monolith.warehouses.domain.usecases.ReplaceWarehouseUseCaseTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.fulfilment.application.monolith.warehouses.domain.usecases.ReplaceWarehouseUseCaseTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/fulfilment/application/monolith/location/LocationGatewayTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/fulfilment/application/monolith/location/LocationGatewayTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/fulfilment/application/monolith/products/ProductEndpointTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/fulfilment/application/monolith/products/ProductEndpointTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/fulfilment/application/monolith/stores/StoreEventObserverTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/fulfilment/application/monolith/stores/StoreEventObserverTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/fulfilment/application/monolith/stores/StoreTransactionIntegrationTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/fulfilment/application/monolith/stores/StoreTransactionIntegrationTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/fulfilment/application/monolith/warehouses/adapters/WarehouseConcurrencyIT.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/fulfilment/application/monolith/warehouses/adapters/WarehouseConcurrencyIT.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/fulfilment/application/monolith/warehouses/adapters/WarehouseTestcontainersIT.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/fulfilment/application/monolith/warehouses/adapters/WarehouseTestcontainersIT.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/fulfilment/application/monolith/warehouses/adapters/restapi/WarehouseEndpointIT.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/fulfilment/application/monolith/warehouses/adapters/restapi/WarehouseEndpointIT.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/fulfilment/application/monolith/warehouses/domain/WarehouseOptimisticLockingTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/fulfilment/application/monolith/warehouses/domain/WarehouseOptimisticLockingTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/fulfilment/application/monolith/warehouses/domain/WarehouseValidationTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/fulfilment/application/monolith/warehouses/domain/WarehouseValidationTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/fulfilment/application/monolith/warehouses/domain/usecases/CreateWarehouseUseCaseTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/fulfilment/application/monolith/warehouses/domain/usecases/CreateWarehouseUseCaseTest.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="3HToDVXlBhou3R8AcoZQynwocoN" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Cloud Drive/Mega/Dev Projects/hackathon-java-assignment&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;,
+      &quot;module&quot;,
+      &quot;repository&quot;
+    ]
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="711f8a5b-53dc-48a8-889b-533796b7e66f" name="Changes" comment="" />
+      <created>1785901299990</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1785901299990</updated>
+    </task>
+    <servers />
+  </component>
+</project>

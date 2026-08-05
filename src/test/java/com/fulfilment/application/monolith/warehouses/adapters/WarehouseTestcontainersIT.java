@@ -5,6 +5,7 @@ import com.fulfilment.application.monolith.warehouses.adapters.database.DbWareho
 import com.fulfilment.application.monolith.warehouses.adapters.database.WarehouseRepository;
 import com.fulfilment.application.monolith.warehouses.domain.models.Warehouse;
 import com.fulfilment.application.monolith.warehouses.domain.usecases.CreateWarehouseUseCase;
+import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
@@ -26,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Quarkus provides built-in support for spinning up test databases.
  */
 @QuarkusTest
+@QuarkusTestResource(value = PostgresTestResource.class, restrictToAnnotatedClass = true)
 public class WarehouseTestcontainersIT {
 
   @Inject
@@ -90,7 +92,7 @@ public class WarehouseTestcontainersIT {
       Warehouse warehouse = new Warehouse();
       warehouse.businessUnitCode = "QUERY-TEST-" + i;
       warehouse.location = "AMSTERDAM-001";
-      warehouse.capacity = 20 + (i * 10);
+      warehouse.capacity = 10 + (i * 2);
       warehouse.stock = 5 + i;
       
       createWarehouseUseCase.create(warehouse);
@@ -170,18 +172,18 @@ public class WarehouseTestcontainersIT {
   @Transactional
   public void testComplexQueryByLocationAndCapacity() {
     // Create warehouses with different capacities
-    createWarehouse("COMPLEX-1", "AMSTERDAM-001", 30);
-    createWarehouse("COMPLEX-2", "AMSTERDAM-001", 50);
-    createWarehouse("COMPLEX-3", "AMSTERDAM-001", 70);
+    createWarehouse("COMPLEX-1", "AMSTERDAM-001", 10);
+    createWarehouse("COMPLEX-2", "AMSTERDAM-001", 20);
+    createWarehouse("COMPLEX-3", "AMSTERDAM-001", 30);
     createWarehouse("COMPLEX-4", "ZWOLLE-001", 40);
-    
+
     // Query using JPQL
     List<DbWarehouse> results = em.createQuery(
         "SELECT w FROM DbWarehouse w WHERE w.location = :location AND w.capacity BETWEEN :min AND :max",
         DbWarehouse.class)
         .setParameter("location", "AMSTERDAM-001")
-        .setParameter("min", 40)
-        .setParameter("max", 70)
+        .setParameter("min", 15)
+        .setParameter("max", 35)
         .getResultList();
     
     // Should find COMPLEX-2 and COMPLEX-3

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LegacyStoreManagerGateway.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java-code-assignment</a> &gt; <a href="index.source.html" class="el_package">com.fulfilment.application.monolith.stores</a> &gt; <span class="el_source">LegacyStoreManagerGateway.java</span></div><h1>LegacyStoreManagerGateway.java</h1><pre class="source lang-java linenums">package com.fulfilment.application.monolith.stores;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+@ApplicationScoped
+<span class="nc" id="L8">public class LegacyStoreManagerGateway {</span>
+
+  public void createStoreOnLegacySystem(Store store) {
+    // just to emulate as this would send this to a legacy system, let's write a temp file with the
+<span class="nc" id="L12">    writeToFile(store);</span>
+<span class="nc" id="L13">  }</span>
+
+  public void updateStoreOnLegacySystem(Store store) {
+    // just to emulate as this would send this to a legacy system, let's write a temp file with the
+<span class="nc" id="L17">    writeToFile(store);</span>
+<span class="nc" id="L18">  }</span>
+
+  private void writeToFile(Store store) {
+    try {
+      // Step 1: Create a temporary file
+      Path tempFile;
+
+<span class="nc" id="L25">      tempFile = Files.createTempFile(store.name, &quot;.txt&quot;);</span>
+
+<span class="nc" id="L27">      System.out.println(&quot;Temporary file created at: &quot; + tempFile.toString());</span>
+
+      // Step 2: Write data to the temporary file
+<span class="nc" id="L30">      String content =</span>
+          &quot;Store created. [ name =&quot;
+              + store.name
+              + &quot; ] [ items on stock =&quot;
+              + store.quantityProductsInStock
+              + &quot;]&quot;;
+<span class="nc" id="L36">      Files.write(tempFile, content.getBytes());</span>
+<span class="nc" id="L37">      System.out.println(&quot;Data written to temporary file.&quot;);</span>
+
+      // Step 3: Optionally, read the data back to verify
+<span class="nc" id="L40">      String readContent = new String(Files.readAllBytes(tempFile));</span>
+<span class="nc" id="L41">      System.out.println(&quot;Data read from temporary file: &quot; + readContent);</span>
+
+      // Step 4: Delete the temporary file when done
+<span class="nc" id="L44">      Files.delete(tempFile);</span>
+<span class="nc" id="L45">      System.out.println(&quot;Temporary file deleted.&quot;);</span>
+
+<span class="nc" id="L47">    } catch (Exception e) {</span>
+<span class="nc" id="L48">      e.printStackTrace();</span>
+<span class="nc" id="L49">    }</span>
+<span class="nc" id="L50">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

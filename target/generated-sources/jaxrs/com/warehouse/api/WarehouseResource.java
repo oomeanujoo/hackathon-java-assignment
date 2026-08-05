@@ -1,14 +1,18 @@
 package com.warehouse.api;
 
 import com.warehouse.api.beans.Warehouse;
+import com.warehouse.api.beans.WarehouseSearchResult;
 import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
+import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -33,6 +37,25 @@ public interface WarehouseResource {
   @Path("/{id}")
   @DELETE
   void archiveAWarehouseUnitByID(@PathParam("id") String id);
+
+  /**
+   * <p>
+   * Lists active (non-archived) warehouse units, optionally filtered by location
+   * and/or capacity range. All parameters are optional. When more than one filter
+   * is given, a warehouse must match all of them (AND logic). Results are
+   * paginated and sortable.
+   * </p>
+   * 
+   */
+  @Path("/search")
+  @GET
+  @Produces("application/json")
+  WarehouseSearchResult searchAndFilterWarehouseUnits(@QueryParam("location") String location,
+      @QueryParam("minCapacity") BigInteger minCapacity, @QueryParam("maxCapacity") BigInteger maxCapacity,
+      @QueryParam("sortBy") @DefaultValue("createdAt") String sortBy,
+      @QueryParam("sortOrder") @DefaultValue("asc") String sortOrder,
+      @QueryParam("page") @DefaultValue("0") BigInteger page,
+      @QueryParam("pageSize") @DefaultValue("10") BigInteger pageSize);
 
   /**
    * <p>

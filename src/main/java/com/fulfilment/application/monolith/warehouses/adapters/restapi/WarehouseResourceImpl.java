@@ -6,11 +6,13 @@ import com.fulfilment.application.monolith.warehouses.domain.ports.CreateWarehou
 import com.fulfilment.application.monolith.warehouses.domain.ports.ReplaceWarehouseOperation;
 import com.warehouse.api.WarehouseResource;
 import com.warehouse.api.beans.Warehouse;
+import com.warehouse.api.beans.WarehouseSearchResult;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.WebApplicationException;
+import java.math.BigInteger;
 import java.util.List;
 
 @RequestScoped
@@ -24,6 +26,53 @@ public class WarehouseResourceImpl implements WarehouseResource {
   @Override
   public List<Warehouse> listAllWarehousesUnits() {
     return warehouseRepository.getAll().stream().map(this::toWarehouseResponse).toList();
+  }
+
+  @Override
+  public WarehouseSearchResult searchAndFilterWarehouseUnits(
+      String location,
+      BigInteger minCapacity,
+      BigInteger maxCapacity,
+      String sortBy,
+      String sortOrder,
+      BigInteger page,
+      BigInteger pageSize) {
+    String sortField = sortBy != null ? sortBy : "createdAt";
+    if (!sortField.equals("createdAt") && !sortField.equals("capacity")) {
+      throw new WebApplicationException("sortBy must be 'createdAt' or 'capacity'", 400);
+    }
+
+    String order = sortOrder != null ? sortOrder : "asc";
+    boolean descending;
+    if (order.equalsIgnoreCase("asc")) {
+      descending = false;
+    } else if (order.equalsIgnoreCase("desc")) {
+      descending = true;
+    } else {
+      throw new WebApplicationException("sortOrder must be 'asc' or 'desc'", 400);
+    }
+
+    int pageNumber = page != null ? Math.max(0, page.intValue()) : 0;
+    int size = pageSize != null ? pageSize.intValue() : 10;
+    size = Math.max(1, Math.min(100, size));
+
+    var result =
+        warehouseRepository.search(
+            location,
+            minCapacity != null ? minCapacity.intValue() : null,
+            maxCapacity != null ? maxCapacity.intValue() : null,
+            sortField,
+            descending,
+            pageNumber,
+            size);
+
+    var response = new WarehouseSearchResult();
+    response.setItems(result.items().stream().map(this::toWarehouseResponse).toList());
+    response.setPage(result.page());
+    response.setPageSize(result.pageSize());
+    response.setTotalElements((int) result.totalElements());
+    response.setTotalPages(result.totalPages());
+    return response;
   }
 
   @Override

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DbWarehouse.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java-code-assignment</a> &gt; <a href="index.source.html" class="el_package">com.fulfilment.application.monolith.warehouses.adapters.database</a> &gt; <span class="el_source">DbWarehouse.java</span></div><h1>DbWarehouse.java</h1><pre class="source lang-java linenums">package com.fulfilment.application.monolith.warehouses.adapters.database;
+
+import java.time.LocalDateTime;
+
+import com.fulfilment.application.monolith.warehouses.domain.models.Warehouse;
+
+import jakarta.persistence.Cacheable;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Version;
+
+@Entity 
+@Table(name = &quot;warehouse&quot;)
+@Cacheable
+public class DbWarehouse {
+
+  @Id @GeneratedValue public Long id;
+  
+  @Version
+  public Long version;
+
+  @Column(unique = true, nullable = false)
+  public String businessUnitCode;
+
+  public String location;
+
+  public Integer capacity;
+
+  public Integer stock;
+
+  public LocalDateTime createdAt;
+
+  public LocalDateTime archivedAt;
+
+<span class="nc" id="L38">  public DbWarehouse() {}</span>
+
+  public Warehouse toWarehouse() {
+<span class="nc" id="L41">    var warehouse = new Warehouse();</span>
+<span class="nc" id="L42">    warehouse.businessUnitCode = this.businessUnitCode;</span>
+<span class="nc" id="L43">    warehouse.location = this.location;</span>
+<span class="nc" id="L44">    warehouse.capacity = this.capacity;</span>
+<span class="nc" id="L45">    warehouse.stock = this.stock;</span>
+<span class="nc" id="L46">    warehouse.createdAt = this.createdAt;</span>
+<span class="nc" id="L47">    warehouse.archivedAt = this.archivedAt;</span>
+<span class="nc" id="L48">    return warehouse;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
