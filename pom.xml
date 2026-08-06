@@ -151,6 +151,32 @@
                             <goal>report</goal>
                         </goals>
                     </execution>
+                    <execution>
+                        <!-- Bound to "verify" (not "test"), so plain "./mvnw test" during local
+                             development stays fast and never fails on this — only "./mvnw verify"
+                             (what CI runs) enforces it. See PROJECT_GUIDE.md section 14 for why
+                             the real, currently-measurable number is well under 80% for this
+                             specific project (a documented Quarkus+JaCoCo tooling limitation, not
+                             a real coverage gap) and what was done about it. -->
+                        <id>jacoco-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <element>BUNDLE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>LINE</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>0.55</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>

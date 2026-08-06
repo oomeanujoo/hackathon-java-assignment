@@ -16,7 +16,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 @RequestScoped
-<span class="nc" id="L19">public class WarehouseResourceImpl implements WarehouseResource {</span>
+<span class="fc" id="L19">public class WarehouseResourceImpl implements WarehouseResource {</span>
 
   @Inject private WarehouseRepository warehouseRepository;
   @Inject private CreateWarehouseOperation createWarehouseOperation;
@@ -25,7 +25,7 @@ import java.util.List;
 
   @Override
   public List&lt;Warehouse&gt; listAllWarehousesUnits() {
-<span class="nc" id="L28">    return warehouseRepository.getAll().stream().map(this::toWarehouseResponse).toList();</span>
+<span class="fc" id="L28">    return warehouseRepository.getAll().stream().map(this::toWarehouseResponse).toList();</span>
   }
 
   @Override
@@ -37,127 +37,127 @@ import java.util.List;
       String sortOrder,
       BigInteger page,
       BigInteger pageSize) {
-<span class="nc bnc" id="L40" title="All 2 branches missed.">    String sortField = sortBy != null ? sortBy : &quot;createdAt&quot;;</span>
-<span class="nc bnc" id="L41" title="All 4 branches missed.">    if (!sortField.equals(&quot;createdAt&quot;) &amp;&amp; !sortField.equals(&quot;capacity&quot;)) {</span>
-<span class="nc" id="L42">      throw new WebApplicationException(&quot;sortBy must be 'createdAt' or 'capacity'&quot;, 400);</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">    String sortField = sortBy != null ? sortBy : &quot;createdAt&quot;;</span>
+<span class="pc bpc" id="L41" title="1 of 4 branches missed.">    if (!sortField.equals(&quot;createdAt&quot;) &amp;&amp; !sortField.equals(&quot;capacity&quot;)) {</span>
+<span class="fc" id="L42">      throw new WebApplicationException(&quot;sortBy must be 'createdAt' or 'capacity'&quot;, 400);</span>
     }
 
-<span class="nc bnc" id="L45" title="All 2 branches missed.">    String order = sortOrder != null ? sortOrder : &quot;asc&quot;;</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">    String order = sortOrder != null ? sortOrder : &quot;asc&quot;;</span>
     boolean descending;
-<span class="nc bnc" id="L47" title="All 2 branches missed.">    if (order.equalsIgnoreCase(&quot;asc&quot;)) {</span>
-<span class="nc" id="L48">      descending = false;</span>
-<span class="nc bnc" id="L49" title="All 2 branches missed.">    } else if (order.equalsIgnoreCase(&quot;desc&quot;)) {</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">    if (order.equalsIgnoreCase(&quot;asc&quot;)) {</span>
+<span class="fc" id="L48">      descending = false;</span>
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">    } else if (order.equalsIgnoreCase(&quot;desc&quot;)) {</span>
 <span class="nc" id="L50">      descending = true;</span>
-    } else {
-<span class="nc" id="L52">      throw new WebApplicationException(&quot;sortOrder must be 'asc' or 'desc'&quot;, 400);</span>
+<span class="nc" id="L51">    } else {</span>
+<span class="fc" id="L52">      throw new WebApplicationException(&quot;sortOrder must be 'asc' or 'desc'&quot;, 400);</span>
     }
 
-<span class="nc bnc" id="L55" title="All 2 branches missed.">    int pageNumber = page != null ? Math.max(0, page.intValue()) : 0;</span>
-<span class="nc bnc" id="L56" title="All 2 branches missed.">    int size = pageSize != null ? pageSize.intValue() : 10;</span>
-<span class="nc" id="L57">    size = Math.max(1, Math.min(100, size));</span>
+<span class="pc bpc" id="L55" title="1 of 2 branches missed.">    int pageNumber = page != null ? Math.max(0, page.intValue()) : 0;</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">    int size = pageSize != null ? pageSize.intValue() : 10;</span>
+<span class="fc" id="L57">    size = Math.max(1, Math.min(100, size));</span>
 
-<span class="nc" id="L59">    var result =</span>
-<span class="nc" id="L60">        warehouseRepository.search(</span>
-            location,
-<span class="nc bnc" id="L62" title="All 2 branches missed.">            minCapacity != null ? minCapacity.intValue() : null,</span>
-<span class="nc bnc" id="L63" title="All 2 branches missed.">            maxCapacity != null ? maxCapacity.intValue() : null,</span>
-            sortField,
-            descending,
-            pageNumber,
-            size);
+<span class="fc" id="L59">    var result =</span>
+<span class="fc" id="L60">        warehouseRepository.search(</span>
+<span class="fc" id="L61">            location,</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">            minCapacity != null ? minCapacity.intValue() : null,</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">            maxCapacity != null ? maxCapacity.intValue() : null,</span>
+<span class="fc" id="L64">            sortField,</span>
+<span class="fc" id="L65">            descending,</span>
+<span class="fc" id="L66">            pageNumber,</span>
+<span class="fc" id="L67">            size);</span>
 
-<span class="nc" id="L69">    var response = new WarehouseSearchResult();</span>
-<span class="nc" id="L70">    response.setItems(result.items().stream().map(this::toWarehouseResponse).toList());</span>
-<span class="nc" id="L71">    response.setPage(result.page());</span>
-<span class="nc" id="L72">    response.setPageSize(result.pageSize());</span>
-<span class="nc" id="L73">    response.setTotalElements((int) result.totalElements());</span>
-<span class="nc" id="L74">    response.setTotalPages(result.totalPages());</span>
-<span class="nc" id="L75">    return response;</span>
+<span class="fc" id="L69">    var response = new WarehouseSearchResult();</span>
+<span class="fc" id="L70">    response.setItems(result.items().stream().map(this::toWarehouseResponse).toList());</span>
+<span class="fc" id="L71">    response.setPage(result.page());</span>
+<span class="fc" id="L72">    response.setPageSize(result.pageSize());</span>
+<span class="fc" id="L73">    response.setTotalElements((int) result.totalElements());</span>
+<span class="fc" id="L74">    response.setTotalPages(result.totalPages());</span>
+<span class="fc" id="L75">    return response;</span>
   }
 
   @Override
   @Transactional
   public Warehouse createANewWarehouseUnit(@NotNull Warehouse data) {
     // Convert API model to domain model
-<span class="nc" id="L82">    var domainWarehouse = new com.fulfilment.application.monolith.warehouses.domain.models.Warehouse();</span>
-<span class="nc" id="L83">    domainWarehouse.businessUnitCode = data.getBusinessUnitCode();</span>
-<span class="nc" id="L84">    domainWarehouse.location = data.getLocation();</span>
-<span class="nc" id="L85">    domainWarehouse.capacity = data.getCapacity();</span>
-<span class="nc bnc" id="L86" title="All 2 branches missed.">    domainWarehouse.stock = data.getStock() != null ? data.getStock() : 0;</span>
+<span class="fc" id="L82">    var domainWarehouse = new com.fulfilment.application.monolith.warehouses.domain.models.Warehouse();</span>
+<span class="fc" id="L83">    domainWarehouse.businessUnitCode = data.getBusinessUnitCode();</span>
+<span class="fc" id="L84">    domainWarehouse.location = data.getLocation();</span>
+<span class="fc" id="L85">    domainWarehouse.capacity = data.getCapacity();</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">    domainWarehouse.stock = data.getStock() != null ? data.getStock() : 0;</span>
 
     try {
       // Create warehouse through use case (includes validations)
-<span class="nc" id="L90">      createWarehouseOperation.create(domainWarehouse);</span>
+<span class="fc" id="L90">      createWarehouseOperation.create(domainWarehouse);</span>
       
       // Return the created warehouse
-<span class="nc" id="L93">      return toWarehouseResponse(domainWarehouse);</span>
-<span class="nc" id="L94">    } catch (IllegalArgumentException e) {</span>
-<span class="nc" id="L95">      throw new WebApplicationException(e.getMessage(), 400);</span>
+<span class="fc" id="L93">      return toWarehouseResponse(domainWarehouse);</span>
+<span class="fc" id="L94">    } catch (IllegalArgumentException e) {</span>
+<span class="fc" id="L95">      throw new WebApplicationException(e.getMessage(), 400);</span>
     }
   }
 
   @Override
   public Warehouse getAWarehouseUnitByID(String id) {
     // Find warehouse by business unit code
-<span class="nc" id="L102">    var domainWarehouse = warehouseRepository.findByBusinessUnitCode(id);</span>
+<span class="fc" id="L102">    var domainWarehouse = warehouseRepository.findByBusinessUnitCode(id);</span>
     
-<span class="nc bnc" id="L104" title="All 2 branches missed.">    if (domainWarehouse == null) {</span>
-<span class="nc" id="L105">      throw new WebApplicationException(&quot;Warehouse with business unit code '&quot; + id + &quot;' not found&quot;, 404);</span>
+<span class="fc bfc" id="L104" title="All 2 branches covered.">    if (domainWarehouse == null) {</span>
+<span class="fc" id="L105">      throw new WebApplicationException(&quot;Warehouse with business unit code '&quot; + id + &quot;' not found&quot;, 404);</span>
     }
     
-<span class="nc" id="L108">    return toWarehouseResponse(domainWarehouse);</span>
+<span class="fc" id="L108">    return toWarehouseResponse(domainWarehouse);</span>
   }
 
   @Override
   @Transactional
   public void archiveAWarehouseUnitByID(String id) {
     // Find warehouse by business unit code
-<span class="nc" id="L115">    var domainWarehouse = warehouseRepository.findByBusinessUnitCode(id);</span>
+<span class="fc" id="L115">    var domainWarehouse = warehouseRepository.findByBusinessUnitCode(id);</span>
 
-<span class="nc bnc" id="L117" title="All 2 branches missed.">    if (domainWarehouse == null) {</span>
-<span class="nc" id="L118">      throw new WebApplicationException(&quot;Warehouse with business unit code '&quot; + id + &quot;' not found&quot;, 404);</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">    if (domainWarehouse == null) {</span>
+<span class="fc" id="L118">      throw new WebApplicationException(&quot;Warehouse with business unit code '&quot; + id + &quot;' not found&quot;, 404);</span>
     }
 
     try {
       // Archive warehouse through use case (includes validations)
-<span class="nc" id="L123">      archiveWarehouseOperation.archive(domainWarehouse);</span>
-<span class="nc" id="L124">    } catch (IllegalArgumentException e) {</span>
-<span class="nc" id="L125">      throw new WebApplicationException(e.getMessage(), 400);</span>
-<span class="nc" id="L126">    }</span>
-<span class="nc" id="L127">  }</span>
+<span class="fc" id="L123">      archiveWarehouseOperation.archive(domainWarehouse);</span>
+<span class="fc" id="L124">    } catch (IllegalArgumentException e) {</span>
+<span class="fc" id="L125">      throw new WebApplicationException(e.getMessage(), 400);</span>
+    }
+<span class="fc" id="L127">  }</span>
 
   @Override
   @Transactional
   public Warehouse replaceTheCurrentActiveWarehouse(
       String businessUnitCode, @NotNull Warehouse data) {
     // Convert API model to domain model
-<span class="nc" id="L134">    var domainWarehouse = new com.fulfilment.application.monolith.warehouses.domain.models.Warehouse();</span>
-<span class="nc" id="L135">    domainWarehouse.businessUnitCode = businessUnitCode; // Use businessUnitCode from path</span>
-<span class="nc" id="L136">    domainWarehouse.location = data.getLocation();</span>
-<span class="nc" id="L137">    domainWarehouse.capacity = data.getCapacity();</span>
-<span class="nc bnc" id="L138" title="All 2 branches missed.">    domainWarehouse.stock = data.getStock() != null ? data.getStock() : 0;</span>
+<span class="fc" id="L134">    var domainWarehouse = new com.fulfilment.application.monolith.warehouses.domain.models.Warehouse();</span>
+<span class="fc" id="L135">    domainWarehouse.businessUnitCode = businessUnitCode; // Use businessUnitCode from path</span>
+<span class="fc" id="L136">    domainWarehouse.location = data.getLocation();</span>
+<span class="fc" id="L137">    domainWarehouse.capacity = data.getCapacity();</span>
+<span class="pc bpc" id="L138" title="1 of 2 branches missed.">    domainWarehouse.stock = data.getStock() != null ? data.getStock() : 0;</span>
 
     try {
       // Replace warehouse through use case (includes validations)
-<span class="nc" id="L142">      replaceWarehouseOperation.replace(domainWarehouse);</span>
+<span class="fc" id="L142">      replaceWarehouseOperation.replace(domainWarehouse);</span>
 
       // Return the updated warehouse
-<span class="nc" id="L145">      var updated = warehouseRepository.findByBusinessUnitCode(businessUnitCode);</span>
-<span class="nc" id="L146">      return toWarehouseResponse(updated);</span>
-<span class="nc" id="L147">    } catch (IllegalArgumentException e) {</span>
-<span class="nc" id="L148">      throw new WebApplicationException(e.getMessage(), 400);</span>
+<span class="fc" id="L145">      var updated = warehouseRepository.findByBusinessUnitCode(businessUnitCode);</span>
+<span class="fc" id="L146">      return toWarehouseResponse(updated);</span>
+<span class="fc" id="L147">    } catch (IllegalArgumentException e) {</span>
+<span class="fc" id="L148">      throw new WebApplicationException(e.getMessage(), 400);</span>
     }
   }
 
   private Warehouse toWarehouseResponse(
       com.fulfilment.application.monolith.warehouses.domain.models.Warehouse warehouse) {
-<span class="nc" id="L154">    var response = new Warehouse();</span>
-<span class="nc" id="L155">    response.setBusinessUnitCode(warehouse.businessUnitCode);</span>
-<span class="nc" id="L156">    response.setLocation(warehouse.location);</span>
-<span class="nc" id="L157">    response.setCapacity(warehouse.capacity);</span>
-<span class="nc" id="L158">    response.setStock(warehouse.stock);</span>
+<span class="fc" id="L154">    var response = new Warehouse();</span>
+<span class="fc" id="L155">    response.setBusinessUnitCode(warehouse.businessUnitCode);</span>
+<span class="fc" id="L156">    response.setLocation(warehouse.location);</span>
+<span class="fc" id="L157">    response.setCapacity(warehouse.capacity);</span>
+<span class="fc" id="L158">    response.setStock(warehouse.stock);</span>
 
-<span class="nc" id="L160">    return response;</span>
+<span class="fc" id="L160">    return response;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

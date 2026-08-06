@@ -1,0 +1,3 @@
+com\warehouse\api\beans\Warehouse.class
+com\warehouse\api\beans\WarehouseSearchResult.class
+com\warehouse\api\WarehouseResource.class

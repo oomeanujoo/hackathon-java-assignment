@@ -38,7 +38,7 @@ import java.util.Map;
 <span class="nc" id="L38">    DbWarehouse dbWarehouse = find(&quot;businessUnitCode&quot;, warehouse.businessUnitCode).firstResult();</span>
 <span class="nc bnc" id="L39" title="All 2 branches missed.">    if (dbWarehouse == null) {</span>
 <span class="nc" id="L40">      throw new IllegalArgumentException(</span>
-          &quot;Warehouse with business unit code '&quot; + warehouse.businessUnitCode + &quot;' does not exist&quot;);
+<span class="nc" id="L41">          &quot;Warehouse with business unit code '&quot; + warehouse.businessUnitCode + &quot;' does not exist&quot;);</span>
     }
 
 <span class="nc" id="L44">    dbWarehouse.location = warehouse.location;</span>
@@ -49,14 +49,19 @@ import java.util.Map;
 
   @Override
   public void remove(Warehouse warehouse) {
-    // TODO Auto-generated method stub
-<span class="nc" id="L53">    throw new UnsupportedOperationException(&quot;Unimplemented method 'remove'&quot;);</span>
-  }
+<span class="nc" id="L52">    DbWarehouse dbWarehouse = find(&quot;businessUnitCode&quot;, warehouse.businessUnitCode).firstResult();</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">    if (dbWarehouse == null) {</span>
+<span class="nc" id="L54">      throw new IllegalArgumentException(</span>
+<span class="nc" id="L55">          &quot;Warehouse with business unit code '&quot; + warehouse.businessUnitCode + &quot;' does not exist&quot;);</span>
+    }
+
+<span class="nc" id="L58">    delete(dbWarehouse);</span>
+<span class="nc" id="L59">  }</span>
 
   @Override
   public Warehouse findByBusinessUnitCode(String buCode) {
-<span class="nc" id="L58">    DbWarehouse dbWarehouse = find(&quot;businessUnitCode&quot;, buCode).firstResult();</span>
-<span class="nc bnc" id="L59" title="All 2 branches missed.">    return dbWarehouse != null ? dbWarehouse.toWarehouse() : null;</span>
+<span class="nc" id="L63">    DbWarehouse dbWarehouse = find(&quot;businessUnitCode&quot;, buCode).firstResult();</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">    return dbWarehouse != null ? dbWarehouse.toWarehouse() : null;</span>
   }
 
   @Override
@@ -68,30 +73,30 @@ import java.util.Map;
       boolean descending,
       int page,
       int pageSize) {
-<span class="nc" id="L71">    StringBuilder queryText = new StringBuilder(&quot;archivedAt is null&quot;);</span>
-<span class="nc" id="L72">    Map&lt;String, Object&gt; params = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L76">    StringBuilder queryText = new StringBuilder(&quot;archivedAt is null&quot;);</span>
+<span class="nc" id="L77">    Map&lt;String, Object&gt; params = new HashMap&lt;&gt;();</span>
 
-<span class="nc bnc" id="L74" title="All 2 branches missed.">    if (location != null) {</span>
-<span class="nc" id="L75">      queryText.append(&quot; and location = :location&quot;);</span>
-<span class="nc" id="L76">      params.put(&quot;location&quot;, location);</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">    if (location != null) {</span>
+<span class="nc" id="L80">      queryText.append(&quot; and location = :location&quot;);</span>
+<span class="nc" id="L81">      params.put(&quot;location&quot;, location);</span>
     }
-<span class="nc bnc" id="L78" title="All 2 branches missed.">    if (minCapacity != null) {</span>
-<span class="nc" id="L79">      queryText.append(&quot; and capacity &gt;= :minCapacity&quot;);</span>
-<span class="nc" id="L80">      params.put(&quot;minCapacity&quot;, minCapacity);</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">    if (minCapacity != null) {</span>
+<span class="nc" id="L84">      queryText.append(&quot; and capacity &gt;= :minCapacity&quot;);</span>
+<span class="nc" id="L85">      params.put(&quot;minCapacity&quot;, minCapacity);</span>
     }
-<span class="nc bnc" id="L82" title="All 2 branches missed.">    if (maxCapacity != null) {</span>
-<span class="nc" id="L83">      queryText.append(&quot; and capacity &lt;= :maxCapacity&quot;);</span>
-<span class="nc" id="L84">      params.put(&quot;maxCapacity&quot;, maxCapacity);</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">    if (maxCapacity != null) {</span>
+<span class="nc" id="L88">      queryText.append(&quot; and capacity &lt;= :maxCapacity&quot;);</span>
+<span class="nc" id="L89">      params.put(&quot;maxCapacity&quot;, maxCapacity);</span>
     }
 
-<span class="nc bnc" id="L87" title="All 2 branches missed.">    Sort sort = Sort.by(sortField, descending ? Sort.Direction.Descending : Sort.Direction.Ascending);</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">    Sort sort = Sort.by(sortField, descending ? Sort.Direction.Descending : Sort.Direction.Ascending);</span>
 
-<span class="nc" id="L89">    PanacheQuery&lt;DbWarehouse&gt; query = find(queryText.toString(), sort, params);</span>
-<span class="nc" id="L90">    long totalElements = query.count();</span>
-<span class="nc" id="L91">    List&lt;Warehouse&gt; items = query.page(Page.of(page, pageSize)).stream().map(DbWarehouse::toWarehouse).toList();</span>
-<span class="nc bnc" id="L92" title="All 2 branches missed.">    int totalPages = pageSize == 0 ? 0 : (int) Math.ceil((double) totalElements / pageSize);</span>
+<span class="nc" id="L94">    PanacheQuery&lt;DbWarehouse&gt; query = find(queryText.toString(), sort, params);</span>
+<span class="nc" id="L95">    long totalElements = query.count();</span>
+<span class="nc" id="L96">    List&lt;Warehouse&gt; items = query.page(Page.of(page, pageSize)).stream().map(DbWarehouse::toWarehouse).toList();</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">    int totalPages = pageSize == 0 ? 0 : (int) Math.ceil((double) totalElements / pageSize);</span>
 
-<span class="nc" id="L94">    return new WarehousePage(items, page, pageSize, totalElements, totalPages);</span>
+<span class="nc" id="L99">    return new WarehousePage(items, page, pageSize, totalElements, totalPages);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

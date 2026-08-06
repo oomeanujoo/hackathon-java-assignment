@@ -14,65 +14,65 @@ public class CreateWarehouseUseCase implements CreateWarehouseOperation {
   private final WarehouseStore warehouseStore;
   private final LocationResolver locationResolver;
 
-<span class="nc" id="L17">  public CreateWarehouseUseCase(WarehouseStore warehouseStore, LocationResolver locationResolver) {</span>
-<span class="nc" id="L18">    this.warehouseStore = warehouseStore;</span>
-<span class="nc" id="L19">    this.locationResolver = locationResolver;</span>
-<span class="nc" id="L20">  }</span>
+<span class="fc" id="L17">  public CreateWarehouseUseCase(WarehouseStore warehouseStore, LocationResolver locationResolver) {</span>
+<span class="fc" id="L18">    this.warehouseStore = warehouseStore;</span>
+<span class="fc" id="L19">    this.locationResolver = locationResolver;</span>
+<span class="fc" id="L20">  }</span>
 
   @Override
   public void create(Warehouse warehouse) {
     // Validation 1: Business unit code must be unique
-<span class="nc" id="L25">    Warehouse existing = warehouseStore.findByBusinessUnitCode(warehouse.businessUnitCode);</span>
-<span class="nc bnc" id="L26" title="All 2 branches missed.">    if (existing != null) {</span>
-<span class="nc" id="L27">      throw new IllegalArgumentException(</span>
-          &quot;Warehouse with business unit code '&quot; + warehouse.businessUnitCode + &quot;' already exists&quot;);
+<span class="fc" id="L25">    Warehouse existing = warehouseStore.findByBusinessUnitCode(warehouse.businessUnitCode);</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">    if (existing != null) {</span>
+<span class="fc" id="L27">      throw new IllegalArgumentException(</span>
+<span class="fc" id="L28">          &quot;Warehouse with business unit code '&quot; + warehouse.businessUnitCode + &quot;' already exists&quot;);</span>
     }
 
     // Validation 2: Location must be valid (must exist)
-<span class="nc" id="L32">    Location location = locationResolver.resolveByIdentifier(warehouse.location);</span>
-<span class="nc bnc" id="L33" title="All 2 branches missed.">    if (location == null) {</span>
-<span class="nc" id="L34">      throw new IllegalArgumentException(</span>
-          &quot;Location '&quot; + warehouse.location + &quot;' is not valid&quot;);
+<span class="fc" id="L32">    Location location = locationResolver.resolveByIdentifier(warehouse.location);</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">    if (location == null) {</span>
+<span class="fc" id="L34">      throw new IllegalArgumentException(</span>
+<span class="fc" id="L35">          &quot;Location '&quot; + warehouse.location + &quot;' is not valid&quot;);</span>
     }
 
     // Validation 3: Capacity validation
     // - Capacity cannot exceed location's max capacity
-<span class="nc bnc" id="L40" title="All 2 branches missed.">    if (warehouse.capacity &gt; location.maxCapacity()) {</span>
-<span class="nc" id="L41">      throw new IllegalArgumentException(</span>
-          &quot;Warehouse capacity (&quot; + warehouse.capacity + 
-<span class="nc" id="L43">          &quot;) exceeds location max capacity (&quot; + location.maxCapacity() + &quot;)&quot;);</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">    if (warehouse.capacity &gt; location.maxCapacity()) {</span>
+<span class="fc" id="L41">      throw new IllegalArgumentException(</span>
+<span class="fc" id="L42">          &quot;Warehouse capacity (&quot; + warehouse.capacity + </span>
+<span class="fc" id="L43">          &quot;) exceeds location max capacity (&quot; + location.maxCapacity() + &quot;)&quot;);</span>
     }
 
     // - Stock cannot exceed capacity
-<span class="nc bnc" id="L47" title="All 2 branches missed.">    if (warehouse.stock &gt; warehouse.capacity) {</span>
-<span class="nc" id="L48">      throw new IllegalArgumentException(</span>
-          &quot;Warehouse stock (&quot; + warehouse.stock +
-          &quot;) exceeds warehouse capacity (&quot; + warehouse.capacity + &quot;)&quot;);
+<span class="fc bfc" id="L47" title="All 2 branches covered.">    if (warehouse.stock &gt; warehouse.capacity) {</span>
+<span class="fc" id="L48">      throw new IllegalArgumentException(</span>
+<span class="fc" id="L49">          &quot;Warehouse stock (&quot; + warehouse.stock +</span>
+<span class="fc" id="L50">          &quot;) exceeds warehouse capacity (&quot; + warehouse.capacity + &quot;)&quot;);</span>
     }
 
     // Validation 4: Location-level limits
-<span class="nc" id="L54">    List&lt;Warehouse&gt; activeAtLocation = warehouseStore.getAll().stream()</span>
-<span class="nc bnc" id="L55" title="All 4 branches missed.">        .filter(w -&gt; warehouse.location.equals(w.location) &amp;&amp; w.archivedAt == null)</span>
-<span class="nc" id="L56">        .toList();</span>
+<span class="fc" id="L54">    List&lt;Warehouse&gt; activeAtLocation = warehouseStore.getAll().stream()</span>
+<span class="pc bpc" id="L55" title="2 of 4 branches missed.">        .filter(w -&gt; warehouse.location.equals(w.location) &amp;&amp; w.archivedAt == null)</span>
+<span class="fc" id="L56">        .toList();</span>
 
-<span class="nc bnc" id="L58" title="All 2 branches missed.">    if (activeAtLocation.size() + 1 &gt; location.maxNumberOfWarehouses()) {</span>
-<span class="nc" id="L59">      throw new IllegalArgumentException(</span>
-          &quot;Location '&quot; + warehouse.location + &quot;' already has the maximum number of warehouses (&quot;
-<span class="nc" id="L61">          + location.maxNumberOfWarehouses() + &quot;)&quot;);</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">    if (activeAtLocation.size() + 1 &gt; location.maxNumberOfWarehouses()) {</span>
+<span class="fc" id="L59">      throw new IllegalArgumentException(</span>
+<span class="fc" id="L60">          &quot;Location '&quot; + warehouse.location + &quot;' already has the maximum number of warehouses (&quot;</span>
+<span class="fc" id="L61">          + location.maxNumberOfWarehouses() + &quot;)&quot;);</span>
     }
 
-<span class="nc" id="L64">    int totalCapacityAtLocation = activeAtLocation.stream().mapToInt(w -&gt; w.capacity).sum() + warehouse.capacity;</span>
-<span class="nc bnc" id="L65" title="All 2 branches missed.">    if (totalCapacityAtLocation &gt; location.maxCapacity()) {</span>
-<span class="nc" id="L66">      throw new IllegalArgumentException(</span>
-          &quot;Total warehouse capacity at location '&quot; + warehouse.location + &quot;' (&quot; + totalCapacityAtLocation
-<span class="nc" id="L68">          + &quot;) would exceed the location's max capacity (&quot; + location.maxCapacity() + &quot;)&quot;);</span>
+<span class="fc" id="L64">    int totalCapacityAtLocation = activeAtLocation.stream().mapToInt(w -&gt; w.capacity).sum() + warehouse.capacity;</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">    if (totalCapacityAtLocation &gt; location.maxCapacity()) {</span>
+<span class="fc" id="L66">      throw new IllegalArgumentException(</span>
+<span class="fc" id="L67">          &quot;Total warehouse capacity at location '&quot; + warehouse.location + &quot;' (&quot; + totalCapacityAtLocation</span>
+<span class="fc" id="L68">          + &quot;) would exceed the location's max capacity (&quot; + location.maxCapacity() + &quot;)&quot;);</span>
     }
 
     // Set creation timestamp
-<span class="nc" id="L72">    warehouse.createdAt = java.time.LocalDateTime.now();</span>
+<span class="fc" id="L72">    warehouse.createdAt = java.time.LocalDateTime.now();</span>
 
     // All validations passed, create the warehouse
-<span class="nc" id="L75">    warehouseStore.create(warehouse);</span>
-<span class="nc" id="L76">  }</span>
+<span class="fc" id="L75">    warehouseStore.create(warehouse);</span>
+<span class="fc" id="L76">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
