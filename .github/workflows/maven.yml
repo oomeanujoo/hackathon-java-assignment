@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    
+    - name: Run test suite
+      run: ./mvnw clean test
+    
+    - name: Run Docker integration tests
+      run: ./mvnw test -Dtest=WarehouseConcurrencyIT,WarehouseTestcontainersIT
+    
+    - name: Generate coverage report
+      run: ./mvnw verify -DskipTests
+      continue-on-error: true
+    
+    - name: Upload Jacoco report
+      uses: actions/upload-artifact@v4
+      with:
+        name: jacoco-coverage-report
+        path: target/site/jacoco/
+    
+    - name: Upload test reports
+      uses: actions/upload-artifact@v4
+      with:
+        name: surefire-reports
+        path: target/surefire-reports/
+
+  publish-coverage-report:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+    - name: Download coverage report
+      uses: actions/download-artifact@v4
+      with:
+        name: jacoco-coverage-report
+        path: coverage-report
+    
+    - name: Upload to GitHub Pages
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: coverage-report
+    
+    - name: Deploy to GitHub Pages
+      uses: actions/deploy-pages@v4
