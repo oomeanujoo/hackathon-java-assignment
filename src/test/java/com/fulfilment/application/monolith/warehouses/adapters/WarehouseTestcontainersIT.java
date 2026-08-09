@@ -27,7 +27,6 @@ import static org.junit.jupiter.api.Assertions.*;
  * Quarkus provides built-in support for spinning up test databases.
  */
 @QuarkusTest
-@QuarkusTestResource(value = PostgresTestResource.class, restrictToAnnotatedClass = true)
 public class WarehouseTestcontainersIT {
 
   @Inject
