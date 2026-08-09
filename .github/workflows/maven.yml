@@ -63,7 +63,10 @@ jobs:
     - name: Upload to GitHub Pages
       uses: actions/upload-pages-artifact@v3
       with:
+        name: coverage-report-pages
         path: coverage-report
     
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v4
+      with:
+        artifact_name: coverage-report-pages
